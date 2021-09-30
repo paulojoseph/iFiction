@@ -16,7 +16,7 @@ public class Main {
     //instancia o objeto que captura os inputs
 		Scanner tc = new Scanner(System.in);
 
-		//System.out.println(salas.get(jogador.getLocation()).getDescription());
+		//System.out.println(salas.get(jogador.getLocal()).getDescricao());
 
     inicio.comecoJogo();
     ajuda.ajudaJogo();
@@ -30,9 +30,11 @@ public class Main {
       //instancia o objeto que servirá para armazenar comandos compostos, com mais de uma palavra 
 			String[] comando = input.split(" ");
 
-			//condicional que verifica se o comando é PEGAR
+			//if que vai identificara qual comando foi digitado pelo usuário.
+      
 			if (comando[0].equals("pegar")) {
 				//verifica se o comando PEGAR está com a sintaxe correta
+
 				if (comando.length >= 2) {
           //inicializa o objeto que armazenará o nome do item digitado pelo usuário
 					String temp = "";
@@ -52,6 +54,7 @@ public class Main {
 				}
 
         //caso o jogador digite o comando olhar
+      
 			} else if (comando[0].equals("olhar")) {
 				//caso o jogador deseje olhar um objeto
 				if (comando.length >= 2) {
@@ -72,36 +75,38 @@ public class Main {
 			} else if (comando[0].equals("ir")) {
 
 				jogador.ir(comando[1], salas);
-				System.out.println(salas.get(jogador.getLocation()).getDescription());
-			} else if (comando[0].equals("norte") || comando[0].equals("sul") || comando[0].equals("leste")
-					|| comando[0].equals("oeste")) {
+				System.out.println(salas.get(jogador.getLocal()).getDescricao());
+
+			} else if (comando[0].equals("norte") || comando[0].equals("sul") || comando[0].equals("leste") || comando[0].equals("oeste")) {
 
 				jogador.ir(comando[0], salas);
-				System.out.println(salas.get(jogador.getLocation()).getDescription());
+				System.out.println(salas.get(jogador.getLocal()).getDescricao());
+
 			} else if (comando.length == 1) {
 
 				if (comando[0].equals("pontuacao")) {
 
 					System.out.println(jogador.getScore());
 				} else if (comando[0].equals("inventario")) { 
-					jogador.getInventory();
+					jogador.getInventario();
 				} else if (comando[0].equals("sair")) {
 					System.out.println("Obrigado por jogar, volte logo!");
 					System.exit(0);
 				}
-			} else {
+			
+      } else {
 				System.out.println("Comando inválido, tente novamente!");
 			}
 
 			//verificar se o jogador possui as credenciais para entrar na próxima sala
-			jogador.checkScores(scores, "visitar " + jogador.getLocation().toLowerCase());
+			jogador.checkScores(scores, "visitar " + jogador.getLocal().toLowerCase());
 
 			//se todos os objetivos forem alcaçados
-			if (scores.isEmpty() && jogador.getLocation().equals("Salão Final")) {
+			if (scores.isEmpty() && jogador.getLocal().equals("Salão Final")) {
 				System.out.println("Parabéns, você chegou ao final e salvou a humanidade! ");
 				System.out.println("Sua pontuação final foi " + jogador.getScore());
 				System.exit(0);
-			} else if (scores.isEmpty() && !jogador.getLocation().equals("Salão Final")) {
+			} else if (scores.isEmpty() && !jogador.getLocal().equals("Salão Final")) {
 
 				System.out.println("Você já completou os objetivos mas ainda não chegou no final...");
 			}
