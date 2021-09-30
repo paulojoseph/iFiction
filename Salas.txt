@@ -1,0 +1,8 @@
+Salão Inicial
+-,-,-,-
+
+                    -*- LABORATÓRIO -*-
+
+É o laboratório onde você acordou. A cápsula permanece aberta e há vários papeis revirados, gavetas pelo chão, uma janela e uma porta(com acesso por cartão).
+
+FIM
