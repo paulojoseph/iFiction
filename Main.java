@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class Main {
 
@@ -11,7 +12,7 @@ public class Main {
 
 		HashMap<String, Item> itens = Importar.criarItens();
 		HashMap<String, Sala> salas = Importar.criarSalas(itens);
-		HashMap<String, Score> scores = Importar.criarPontuação();
+		HashMap<String, Pontos> pontos = Importar.criarPontos();
 
     //instancia o objeto que captura os inputs
 		Scanner tc = new Scanner(System.in);
@@ -31,31 +32,12 @@ public class Main {
 			String[] comando = input.split(" ");
 
 			//if que vai identificara qual comando foi digitado pelo usuário.
-      
-			if (comando[0].equals("pegar")) {
-				//verifica se o comando PEGAR está com a sintaxe correta
 
-				if (comando.length >= 2) {
-          //inicializa o objeto que armazenará o nome do item digitado pelo usuário
-					String temp = "";
-					//concatena todas as palavras digitadas pelo usuário e armazena no objeto 'temp'
-					for (int i = 1; i < comando.length; i++) {
-						temp = temp + comando[i] + " ";
-					}
-					temp = temp.trim();
 
-					jogador.add(temp, salas);
-
-					//verifica se o jogador pode pegar o item
-					jogador.checkScores(scores, "pegar " + temp);
-
-				} else {
-					System.out.println(comando[1] + " não existe, tente novamente!");
-				}
 
         //caso o jogador digite o comando olhar
       
-			} else if (comando[0].equals("olhar")) {
+			if (comando[0].equals("olhar")) {
 				//caso o jogador deseje olhar um objeto
 				if (comando.length >= 2) {
           //cria um objeto string para armazenar o texto digitado pelo jogador
@@ -77,6 +59,27 @@ public class Main {
 				jogador.ir(comando[1], salas);
 				System.out.println(salas.get(jogador.getLocal()).getDescricao());
 
+      } else if (comando[0].equals("pegar")) {
+				//verifica se o comando PEGAR está com a sintaxe correta
+
+				if (comando.length >= 2) {
+          //inicializa o objeto que armazenará o nome do item digitado pelo usuário
+					String temp = "";
+					//concatena todas as palavras digitadas pelo usuário e armazena no objeto 'temp'
+					for (int i = 1; i < comando.length; i++) {
+						temp = temp + comando[i] + " ";
+					}
+					temp = temp.trim();
+
+					jogador.add(temp, salas);
+
+					//verifica se o jogador pode pegar o item
+					jogador.verPontos(pontos, "pegar " + temp);
+
+				} else {
+					System.out.println(comando[1] + " não existe, tente novamente!");
+				}
+
 			} else if (comando[0].equals("norte") || comando[0].equals("sul") || comando[0].equals("leste") || comando[0].equals("oeste")) {
 
 				jogador.ir(comando[0], salas);
@@ -86,7 +89,7 @@ public class Main {
 
 				if (comando[0].equals("pontuacao")) {
 
-					System.out.println(jogador.getScore());
+					System.out.println(jogador.getPontos());
 				} else if (comando[0].equals("inventario")) { 
 					jogador.getInventario();
 				} else if (comando[0].equals("sair")) {
@@ -99,14 +102,14 @@ public class Main {
 			}
 
 			//verificar se o jogador possui as credenciais para entrar na próxima sala
-			jogador.checkScores(scores, "visitar " + jogador.getLocal().toLowerCase());
+			jogador.verPontos(pontos, "visitar " + jogador.getLocal().toLowerCase());
 
 			//se todos os objetivos forem alcaçados
-			if (scores.isEmpty() && jogador.getLocal().equals("Salão Final")) {
+			if (pontos.isEmpty() && jogador.getLocal().equals("Salão Final")) {
 				System.out.println("Parabéns, você chegou ao final e salvou a humanidade! ");
-				System.out.println("Sua pontuação final foi " + jogador.getScore());
+				System.out.println("Sua pontuação final foi " + jogador.getPontos());
 				System.exit(0);
-			} else if (scores.isEmpty() && !jogador.getLocal().equals("Salão Final")) {
+			} else if (pontos.isEmpty() && !jogador.getLocal().equals("Salão Final")) {
 
 				System.out.println("Você já completou os objetivos mas ainda não chegou no final...");
 			}
