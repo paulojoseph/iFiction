@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Importar {
 
-	public static HashMap<String, Sala> criarSalas(HashMap<String, Item> itens) {
+	public static HashMap<String, Sala> criarSalas(HashMap<String, Item> itens, HashMap<String, Objeto> objetos) {
     
 		try {
 
@@ -42,7 +42,7 @@ public class Importar {
 				}
 
 				//adiciona a sala ao HashMap
-				Salas.put(nome, new Sala(nome, descricao, fronteira, itens));
+				Salas.put(nome, new Sala(nome, descricao, fronteira, itens, objetos));
 
 				linha = leitor.readLine();
 
@@ -69,13 +69,9 @@ public class Importar {
 
 				String nome = linha;
 				nome = nome.toLowerCase();
-
 				linha = leitor.readLine();
-
-				String location = linha.trim();
-
+				String local = linha.trim();
 				linha = leitor.readLine();
-
 				String descricao = "";
 
 				while (!linha.equals("FIM")) {
@@ -84,7 +80,7 @@ public class Importar {
 					linha = leitor.readLine();
 				}
 
-				itens.put(nome, new Item(nome, descricao, location));
+				itens.put(nome, new Item(nome, descricao, local));
 
 				linha = leitor.readLine(); 
 
@@ -96,6 +92,45 @@ public class Importar {
 		}
 		return null;
 	}
+
+  //cria um HashMap para armazenar as informações dos Objetos
+	public static HashMap<String, Objeto> criarObjetos() {
+		try {
+
+			BufferedReader leitor = new BufferedReader(new FileReader("Objetos.txt"));
+			String linha = leitor.readLine();
+			HashMap<String, Objeto> objetos = new HashMap<String, Objeto>();
+
+			while (linha != null) {
+
+				String nome = linha;
+				nome = nome.toLowerCase();
+				linha = leitor.readLine();
+
+				String local = linha.trim();
+				linha = leitor.readLine();
+        
+				String descricao = "";
+
+				while (!linha.equals("FIM")) {
+
+					descricao = descricao + linha + '\n';
+					linha = leitor.readLine();
+				}
+
+				objetos.put(nome, new Objeto(nome, descricao, local));
+
+				linha = leitor.readLine(); 
+
+			}
+
+			return objetos;
+		} catch (IOException e) {
+			System.out.println("O arquivo Objetos.txt não pode ser encontrado, tente novamente!");
+		}
+		return null;
+	}
+
 
   //cria um HashMap para armazenar as informações dos Pontos
 	public static HashMap<String, Pontos> criarPontos() {
@@ -117,9 +152,9 @@ public class Importar {
 
 				String id = "";
         //verifica no início do Pontos.txt se a primeira descrição se refere a visitar aluma sala. Caso verdadeiro, é necessário adicionar a pontuação informada
-				if (temp[0].equals("ACESSO")) {
+				if (temp[0].equals("IR")) {
 					//id vai armazenar a informação da sala acessada e pontuação
-					id = temp[0] + " " + temp[2];
+					id = temp[0] + " " + temp[3];
 				} else {
 					//id vai armazenar a informação por pegar algum item
 					id = temp[0] + " " + temp[1];
@@ -127,7 +162,7 @@ public class Importar {
 				id = id.toLowerCase();
 
 				//adiciona os pontos e id à HashMap
-				pontos.put(id, new Pontos(temp[0], temp[1], temp[2], Integer.parseInt(temp[3])));
+				pontos.put(id, new Pontos(temp[0], temp[1], temp[2], temp[3], Integer.parseInt(temp[4])));
 
 				linha = leitor.readLine();
 			}
