@@ -11,13 +11,16 @@ public class Sala {
 	private String descricao_;
   //itens da sala
 	private HashMap<String, Item> itens_ = new HashMap<String, Item>();
+	private HashMap<String, Objeto> objetos_ = new HashMap<String, Objeto>();
 
-	public Sala(String nome, String descricao, String[] fronteira, HashMap<String, Item> itens) {
+
+	public Sala(String nome, String descricao, String[] fronteira, HashMap<String, Item> itens, HashMap<String, Objeto> objetos) {
 		nome_ = nome;
     fronteira_ = fronteira;
 		descricao_ = descricao;
 
 		setItens(itens);
+    setObjetos(objetos);
 	}
 
 	public void setItens(HashMap<String, Item> itens) {
@@ -30,7 +33,21 @@ public class Sala {
 		}
 	}
 
-	public void olhar() {
+	public void setObjetos(HashMap<String, Objeto> objetos) {
+		for (Map.Entry<String, Objeto> j : objetos.entrySet()) { //itera a lista de itens
+			//se o item pertence à sala
+			if (j.getValue().getLocal().equals(nome_)) {
+				//adiciona o item à sala
+				objetos_.put(j.getKey(), j.getValue());
+
+        //preciso fazer um método pra acessar corretamente essa variável
+        Jogador.objeto_.put(j.getKey(), j.getValue());
+
+			}
+		}
+	}
+
+	public void ver() {
 		System.out.println(descricao_);
 
 		System.out.println("Há saídas disponíveis em... ");
@@ -61,7 +78,7 @@ public class Sala {
 		if (itens_.isEmpty()) {
 			System.out.println("Não há itens na sala.");
 		} else {
-			System.out.println("Há item nessa sala.");
+			System.out.println("Há itens nessa sala.");
 		}
 
 	}
@@ -84,6 +101,11 @@ public class Sala {
   //captura informação de itens da sala
 	public HashMap<String, Item> getInventario() {
 		return itens_;
+	}
+
+  //captura informação de objetos da sala
+	public HashMap<String, Objeto> getObjetos() {
+		return objetos_;
 	}
 
 }
