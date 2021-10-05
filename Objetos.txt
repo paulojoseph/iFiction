@@ -1,0 +1,12 @@
+janela
+lab
+
+Você observa através da janela, o que já foi uma civilização, parece ter virado apenas um monte de lixo e destruição
+
+FIM
+porta
+lab
+
+Porta com acesso por leitor de cartão. Aparentemente será necessário utilizar alguma credencial específica para conseguir acessar o outro lado da porta.
+
+FIM
