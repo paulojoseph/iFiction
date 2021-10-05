@@ -1,8 +1,15 @@
-Salão Inicial
--,-,-,-
+lab
+corredor,-,-,-
 
                     -*- LABORATÓRIO -*-
 
-É o laboratório onde você acordou. A cápsula permanece aberta e há vários papeis revirados, gavetas pelo chão, uma janela e uma porta(com acesso por cartão).
+Você está no laboratório onde despertara. A cápsula permanece aberta e há vários papeis espalhados pelo chão, um crachá, uma janela e uma porta, ao norte.
+
+FIM
+corredor
+-,lab,-,-
+                    -*- CORREDOR DO LABORATÓRIO -*-
+
+Ao sair do laboratório, você se depara com um corredor estreito
 
 FIM
