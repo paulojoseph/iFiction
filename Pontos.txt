@@ -1,2 +1,3 @@
-ITEM, Cartão de Acesso, Salão Inicial, 10
-ACESSO,-, Salão Inicial, 10
+PEGAR, cracha,-, lab, 10
+USAR, cracha,-, lab, 10
+IR,-,-, corredor, 10
