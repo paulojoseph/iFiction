@@ -4,15 +4,18 @@ public class Pontos {
 	private String acao_; 
   //nome do item, caso haja
 	private String item_;
+  //nome do objeto, caso haja
+	private String objeto_;
   //sala onde a ação ocorreu ou item foi encontrado
 	private String local_;
   //quantidade de pontos conquistados pela ação
 	private int pontos_;
 
-	public Pontos(String acao, String item, String local, int pontos) {
+	public Pontos(String acao, String item, String objeto, String local, int pontos) {
 		acao_ = acao;
 		item_ = item;
 		local_ = local;
+    objeto_ = objeto;
 		pontos_ = pontos;
 	}
 
@@ -24,6 +27,10 @@ public class Pontos {
 		return item_;
 	}
 
+	public String getObjeto() {
+		return objeto_;
+	}
+  
 	public String getLocal() {
 		return local_;
 	}
