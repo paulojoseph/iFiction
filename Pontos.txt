@@ -1,3 +1,6 @@
 PEGAR, cracha,-, lab, 10
 USAR, cracha,-, lab, 10
-IR,-,-, corredor, 10
+PEGAR, nota g,-, passado2, 10
+USAR, nota g,-, passado3, 10
+PEGAR, cartão perfurado,-, passado1, 10
+USAR, cartão perfurado,-, passado1, 10
