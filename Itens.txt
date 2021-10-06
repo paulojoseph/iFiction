@@ -1,4 +1,18 @@
 cracha
 lab
-Um crachá encontrado no laboratório. Estava no jaleco de um corpo deixado para trás, aparentemente um cientista importante. Agora, apenas um esqueleto.
+
+Um crachá encontrado no laboratório. Deve servir para dar acesso a outras áreas. Estava no jaleco de um corpo deixado para trás, aparentemente um cientista importante. Agora, apenas um esqueleto.
+
+FIM
+cartão perfurado
+passado1
+
+Parece ser um artefato antigo. Você não sabe muito bem o que fazer com isso.
+
+FIM
+nota g
+passado2
+
+Anotação que contem uma espécie de algoritmo. Está escrito "Sequência de Bernoulli".
+
 FIM
