@@ -54,22 +54,22 @@ public class Sala {
 
 		if (!fronteira_[0].equals("-")) {
 
-			System.out.print("NORTE, ");
+			System.out.print("| NORTE |");
 		}
 
 		if (!fronteira_[1].equals("-")) {
 
-			System.out.print("SUL, ");
+			System.out.print("| SUL |");
 		}
 
 		if (!fronteira_[2].equals("-")) {
 
-			System.out.print("LESTE, ");
+			System.out.print("| LESTE |");
 		}
 
 		if (!fronteira_[3].equals("-")) {
 
-			System.out.print("OESTE, ");
+			System.out.print("| OESTE |");
 		}
 
 		System.out.println();
