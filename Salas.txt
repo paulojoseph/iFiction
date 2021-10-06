@@ -2,14 +2,69 @@ lab
 corredor,-,-,-
 
                     -*- LABORATÓRIO -*-
-
-Você está no laboratório onde despertara. A cápsula permanece aberta e há vários papeis espalhados pelo chão, um crachá, uma janela e uma porta, ao norte.
+                    
+Você está no laboratório onde despertara. A cápsula permanece aberta e há vários papeis espalhados pelo chão, um jaleco, uma janela e uma porta, ao norte.
 
 FIM
 corredor
--,lab,-,-
-                    -*- CORREDOR DO LABORATÓRIO -*-
+presente1,lab,futuro1,passado1
 
-Ao sair do laboratório, você se depara com um corredor estreito
+                    -*- CORREDOR -*-
 
+Ao sair do laboratório, você se depara com um salão que possui um grande objeto bem ao centro, uma espécie de monolito. A oeste, uma porta amarela, ao norte, uma porta verde e a leste uma porta azul. Acima do monolito, existe uma figura, que se parece com um mapa.
+
+FIM
+passado1
+-,-,corredor,passado2
+
+                    -*- PASSADO 1 -*-
+
+Você se surpreende com a decoração desta sala. Tudo parece ser antigo e cheio de poeira. No canto da sala, uma espécie de máquina de tear. Há um objeto em cima da mesa.
+
+FIM
+passado2
+-,-,passado1,passado3
+
+                    -*- PASSADO 2 -*-
+                    
+A decoração dessa sala se parece muito com a visitada anteriormente... há uma pintura na parede e várias anotações espalhadas.
+
+FIM
+passado3
+-,-,passado2,-
+
+                    -*- PASSADO 3 -*-
+
+Nesta sala, você identifica uma máquina antiga, bem grande. Na parede, um quadro com a figura de um homem.
+
+FIM
+presente1
+presente2,corredor,-,-
+                    -*- PRESENTE 1 -*-
+Presente lvl 1
+FIM
+presente2
+presente3,presente1,-,-
+                    -*- PRESENTE 2 -*-
+Presente lvl 2
+FIM
+presente3
+-,presente2,-,-
+                    -*- PRESENTE 3 -*-
+Presente lvl 3
+FIM
+futuro1
+-,-,futuro2,corredor
+                    -*- FUTURO 1 -*-
+Futuro 1
+FIM
+futuro2
+-,-,futuro3,futuro1
+                    -*- FUTURO 2 -*-
+Futuro 2
+FIM
+futuro3
+-,-,-,futuro2
+                    -*- FUTURO 3 -*-
+Futuro 3
 FIM
