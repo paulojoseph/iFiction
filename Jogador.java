@@ -4,9 +4,9 @@ import java.util.Map;
 public class Jogador {
 
   //captura o nome da sala onde o jogador está
-	private static String local_;
+	public static String local_;
   //inventário
-	private static Map<String, Item> inventario_ = new HashMap<String, Item>();
+	public static Map<String, Item> inventario_ = new HashMap<String, Item>();
   public static Map<String, Objeto> objeto_ = new HashMap<String, Objeto>();
   //pontuação
 	private static int pontos_ = 0;
@@ -55,45 +55,35 @@ public class Jogador {
     //armazena a informação das outras salas que fazem fronteiras com a atual
 		String[] temp = atual.getFronteiras();
 
-    switch(direcao) {
-    
-      case "norte":
-
-        if (!temp[0].equals("-")) {
+    if(direcao.equals("norte") || direcao.equals("n")) {
+      if (!temp[0].equals("-")) {
           local_ = temp[0];
-        } else {
-          msgErroFronteira();
-          break;
-        }
+      } else {
+            msgErroFronteira();
+      }
         
-      case "sul":
-
+    } else if(direcao.equals("sul") || direcao.equals("s")) {
         if (!temp[1].equals("-")) {
           local_ = temp[1];
-        } else {
+      } else {
           msgErroFronteira();
-          break;
-        }
+      }
         
-      case "leste":
-
+    } else if(direcao.equals("leste") || direcao.equals("l")) {
         if (!temp[2].equals("-")) {
           local_ = temp[2];
         } else {
           msgErroFronteira();
-          break;
         }
 
-      case "oeste":
-
+    } else if(direcao.equals("oeste") || direcao.equals("o")) {
         if (!temp[3].equals("-")) {
           local_ = temp[3];
         } else {
           msgErroFronteira();
-          break;
         }
       
-      default:
+      } else {
         msgErroFronteira();
 		  }
 	}
@@ -147,9 +137,9 @@ public class Jogador {
 			Sala atual = salas.get(local_);
 
 			atual.getInventario().put(temp.getNome(), temp);
-			System.out.println(item + " foi usado com sucesso!");
+			System.out.println("\n"+ item + " foi utilizado!\n");
 		} else { 
-			System.out.println("Desculpe, " + item + " não está no seu inventário.");
+			System.out.println("\nDesculpe, " + item + " não está no seu inventário.\n");
 		}
 	}
 
@@ -162,7 +152,7 @@ public class Jogador {
 	public void getInventario() {
 		if (inventario_.isEmpty()) {
 
-			System.out.println("O inventário está vazio");
+			System.out.println("\nO inventário está vazio\n");
 		} else {
 			for (Map.Entry<String, Item> x : inventario_.entrySet()) {
 				System.out.println(x.getKey());
@@ -174,7 +164,7 @@ public class Jogador {
 	public void getObjetos() {
 		if (objeto_.isEmpty()) {
 
-			System.out.println("Os objetos estão vazios");
+			System.out.println("\nOs objetos estão vazios\n");
 		} else {
 			for (Map.Entry<String, Objeto> y : objeto_.entrySet()) {
 				System.out.println(y.getKey());
@@ -210,8 +200,8 @@ public class Jogador {
 		}
 	}
   public void msgErroFronteira() {
-    System.out.println("\nNão há um caminho disponível nessa direção. Tente novamente!");
+    System.out.println("\nNão há um caminho disponível nessa direção. Tente novamente!\n");
     
   }
-}
 
+}
