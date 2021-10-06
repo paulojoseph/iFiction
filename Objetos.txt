@@ -10,3 +10,68 @@ lab
 Porta com acesso por leitor de cartão. Aparentemente será necessário utilizar alguma credencial específica para conseguir acessar o outro lado da porta.
 
 FIM
+mapa
+corredor
+
+Parece ser um mapa das instalações.
+
+                           _
+                          |2|
+                          |_|
+                     _ _ _|_|_ _ _
+                    |1|_|_|x|_|_|3|
+                          |_|
+
+FIM
+monolito
+corredor
+
+Um monolito futurista que possui um visor, que está desligado. Possui 3 luzes redondas, que estão apagadas, com as seguintes legendas:
+
+1 / 2 / 3
+
+FIM
+quadro
+passado3
+
+Um quadro que representa uma pintura antiga de uma homem. A legenda diz: "C. Babbage (1791 - 1871)"
+
+FIM
+máquina antiga
+passado3
+
+Uma máquina enferrujada que possui várias engrenagens. mas ainda é possível ler uma parte de sua inscrição:
+
+'The First One'
+
+FIM
+pintura
+passado2
+
+Uma pintura que representa uma figura feminina, aparentemente bem importante.
+
+A legenda diz: "A. Lovelace. (1815 - 1852)"
+
+FIM
+anotações
+passado2
+
+Várias anotações, ordenadas alfabeticamente de A a G. Você percebe que há uma espécie de destaque dado à nota g.
+
+Embaixo das anotações há algo escrito: "The first one"
+
+FIM
+máquina de tear
+passado1
+
+Uma máquina de tear automatizada. Parece estar fora de operação, está faltando uma parte do mecanismo que a faz funcionar. Ainda é possível ler uma parte de sua inscrição:
+
+'The First One, by J. M. Jacquard (1752 - 1834)'
+
+FIM
+mesa
+passado1
+
+Em cima da mesa está uma espécie de cartão, cheio de furos. Seria esse o tal cartão perfurado?
+
+FIM
