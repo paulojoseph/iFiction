@@ -9,6 +9,8 @@ public class Main {
     Jogador inicio = new Jogador();
     Jogador ajuda = new Jogador();
 		Jogador jogador = new Jogador();
+    int pontuacao = 0;
+
 
 		HashMap<String, Item> itens = Importar.criarItens();
 		HashMap<String, Objeto> objetos = Importar.criarObjetos();
@@ -33,7 +35,7 @@ public class Main {
 
 			//if que vai identificara qual comando foi digitado pelo usuário.
 
-
+			//se todos os objetivos forem alcançados
 
         //caso o jogador digite o comando ver
       
@@ -49,27 +51,31 @@ public class Main {
 
           temp = temp.trim();
         
-          try {
-            jogador.ver(temp);
-          } catch(Exception e) {
-          }
+	      	Sala atual = salas.get(Jogador.local_);
           
           try {
-            jogador.verObj(temp);
-          } catch(Exception e) {
+            if (Jogador.inventario_.containsKey(temp)) {
+              jogador.ver(temp);
+            } else if (atual.getObjetos().containsKey(temp)) {
+              jogador.verObj(temp);
+            } else {
             System.out.println("\nNão existe nada com esse nome para ser visto\n");
+            }
+          } catch(Exception e) {
+
           }
 
 				} else if (comando.length == 1) {
 					jogador.ver(salas);
+
 				} else {
 					System.out.println(comando[1] + "não encontrado, tente novamente!");
 				}
 
-			} else if (comando[0].equals("ir")) {
+			/*} else if (comando[0].equals("ir")) {
 
 				jogador.ir(comando[1], salas);
-				System.out.println(salas.get(jogador.getLocal()).getDescricao());
+				System.out.println(salas.get(jogador.getLocal()).getDescricao());*/
 
       } else if (comando[0].equals("pegar")) {
 				//verifica se o comando PEGAR está com a sintaxe correta
@@ -93,33 +99,46 @@ public class Main {
 					System.out.println(comando[1] + " não existe, tente novamente!");
 				}
 
-			} else if (comando[0].equals("usar")) { // jogador wants to usar
-				// making sure input has comando and item
+			} else if (comando[0].equals("usar")) { // jogador tenta usar item
+				//garantir que o texto digitado está correto
 				if (comando.length >= 2) {
 					String temp = "";
-					// create string of object name
+					//cria uma string com o nome do objeto
 					for (int i = 1; i < comando.length; i++) {
 						temp = temp + comando[i] + " ";
 					}
 					temp = temp.trim();
 					jogador.usar(temp, salas);
 
-					// check if we meet goal for dropping object
-					//first check if we would be dropping in correct room...
+					//verificar se item foi usado na sala correta
 					if (pontos.get("usar " + temp).getLocal().equals(jogador.getLocal())) {
-						//if so...
+
 						jogador.verPontos(pontos, "usar " + temp);
-					}
-        }
-			} else if (comando[0].equals("norte") || comando[0].equals("sul") || comando[0].equals("leste") || comando[0].equals("oeste")) {
 
-        if(jogador.getPontos() < 20 && jogador.getLocal().equals("Lab") && comando[0].equals("norte")) {
-
-          System.out.println("\nVocê não possui autorização para utilizar a porta!\n");
-          
+					} else {
+            System.out.println(temp + " não deve ser usado aqui");
+          }
         } else {
-				jogador.ir(comando[0], salas);
-				System.out.println(salas.get(jogador.getLocal()).getDescricao());
+          System.out.println("Não existe!");
+        }
+
+			} else if (comando[0].equals("norte") || comando[0].equals("n") || comando[0].equals("sul") || comando[0].equals("s") ||  comando[0].equals("leste") || comando[0].equals("l") || comando[0].equals("oeste") || comando[0].equals("o")) {
+
+        if (comando[0].equals("norte") || comando[0].equals("n") && pontuacao < 20 && Jogador.local_.equals("lab")) {
+
+        System.out.println("\nVocê não possui autorização para acessar a porta do laboratório.\n");
+
+        } else if (comando[0].equals("norte") || comando[0].equals("n") && pontuacao < 70 && Jogador.local_.equals("corredor")) {
+
+        System.out.println("\nVocê não possui autorização para acessar a porta do presente.\n");
+
+        } else if (comando[0].equals("leste") || comando[0].equals("l") && pontuacao < 70 && Jogador.local_.equals("corredor")) {
+
+        System.out.println("\nVocê não possui autorização para acessar a porta do futuro.\n");
+
+        } else {
+          jogador.ir(comando[0], salas);
+          System.out.println(salas.get(jogador.getLocal()).getDescricao());
         }
 
 			} else if (comando.length == 1) {
@@ -136,23 +155,28 @@ public class Main {
 					System.exit(0);
 				} else if (comando[0].equals("ajuda")) {
           ajuda.ajudaJogo();
-      } else {
-				System.out.println("Comando inválido, tente novamente!");
-			}
+        } else {
+          System.out.println("Comando inválido, tente novamente!");
+        }
+		  }
+
 
 			//verificar se o jogador possui as credenciais para entrar na próxima sala
 			jogador.verPontos(pontos, "ir " + jogador.getLocal().toLowerCase());
 
-			//se todos os objetivos forem alcaçados
-			if (pontos.isEmpty() && jogador.getLocal().equals("Corredor")) {
-				System.out.println("Parabéns, você chegou ao final e salvou a humanidade! ");
-				System.out.println("Sua pontuação final foi " + jogador.getPontos());
+      pontuacao = jogador.getPontos();
+
+			if (jogador.getPontos() == 60 && jogador.getLocal().equals("corredor")) {
+				System.out.println("Parabéns, você finalizou a trilha do passado e acendeu uma das três luzes do monolito. Além disso, valorizou a memória de Joseph Jacquard, Ada Lovelace e Charles Babbage!!!\n"
+        +"\nAguarde atualizações com as trilhas do presente e futuro!\n");
+				System.out.println("\nSua pontuação final foi " + jogador.getPontos());
 				System.exit(0);
-			} else if (pontos.isEmpty() && !jogador.getLocal().equals("Lab")) {
+			} else if (pontos.isEmpty() && !jogador.getLocal().equals("corredor")) {
 
 				System.out.println("Você já completou os objetivos mas ainda não chegou no final...");
 			}
-		}
+
 	}
+
 }
 }
