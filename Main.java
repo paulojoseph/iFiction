@@ -123,23 +123,15 @@ public class Main {
         }
 
 			} else if (comando[0].equals("norte") || comando[0].equals("n") || comando[0].equals("sul") || comando[0].equals("s") ||  comando[0].equals("leste") || comando[0].equals("l") || comando[0].equals("oeste") || comando[0].equals("o")) {
+				
+					if ((comando[0].equals("norte") || comando[0].equals("n")) && pontuacao < 20 && Jogador.local_.equals("lab")) {
 
-        if (comando[0].equals("norte") || comando[0].equals("n") && pontuacao < 20 && Jogador.local_.equals("lab")) {
+					System.out.println("\nVocê não possui autorização para acessar a porta do laboratório.\n");
 
-        System.out.println("\nVocê não possui autorização para acessar a porta do laboratório.\n");
-
-        } else if (comando[0].equals("norte") || comando[0].equals("n") && pontuacao < 70 && Jogador.local_.equals("corredor")) {
-
-        System.out.println("\nVocê não possui autorização para acessar a porta do presente.\n");
-
-        } else if (comando[0].equals("leste") || comando[0].equals("l") && pontuacao < 70 && Jogador.local_.equals("corredor")) {
-
-        System.out.println("\nVocê não possui autorização para acessar a porta do futuro.\n");
-
-        } else {
-          jogador.ir(comando[0], salas);
-          System.out.println(salas.get(jogador.getLocal()).getDescricao());
-        }
+					} else {
+						jogador.ir(comando[0], salas);
+						System.out.println(salas.get(jogador.getLocal()).getDescricao());
+					}
 
 			} else if (comando.length == 1) {
 
